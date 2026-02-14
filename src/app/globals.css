@@ -1,26 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Palette */
+  --prussian-blue: #0a1128;
+  --deep-navy: #001f54;
+  --yale-blue: #034078;
+  --cerulean: #1282a2;
+  --white: #fefcfb;
+
+  /* Force Light Mode Background */
+  --background: var(--white);
+  --foreground: var(--prussian-blue);
+
+  --font-geist-sans: "Geist", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
 }
 
+/* We removed the @media dark background override to keep it always light */
+
 @theme inline {
+  --color-primary: var(--prussian-blue);
+  --color-secondary: var(--deep-navy);
+  --color-accent: var(--cerulean);
+  --color-muted: var(--yale-blue);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-white: var(--white);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    @apply antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Dark Blue Button with White Text */
+  .btn-primary {
+    @apply bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg transition-all font-semibold shadow-md active:scale-95 inline-block text-center;
+  }
+
+  /* Link styling for that "Dark Blue" look */
+  .nav-link {
+    @apply text-primary hover:text-accent transition-colors font-bold uppercase tracking-wider text-sm;
+  }
 }
