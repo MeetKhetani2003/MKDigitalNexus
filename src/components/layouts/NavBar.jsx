@@ -3,22 +3,43 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation"; // Import hook
 import gsap from "gsap";
 
 const CustomLink = ({ href, children }) => {
+  const pathname = usePathname();
   const lineRef = useRef(null);
 
-  // GSAP Hover Animation
+  // Check if this link is currently active
+  const isActive = pathname === href;
+
+  useEffect(() => {
+    // If active, ensure the line is visible immediately
+    if (isActive) {
+      gsap.set(lineRef.current, { width: "100%" });
+    } else {
+      gsap.set(lineRef.current, { width: "0%" });
+    }
+  }, [isActive]);
+
   const onMouseEnter = () => {
-    gsap.to(lineRef.current, {
-      width: "100%",
-      duration: 0.3,
-      ease: "power2.out",
-    });
+    if (!isActive) {
+      gsap.to(lineRef.current, {
+        width: "100%",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   };
 
   const onMouseLeave = () => {
-    gsap.to(lineRef.current, { width: "0%", duration: 0.3, ease: "power2.in" });
+    if (!isActive) {
+      gsap.to(lineRef.current, {
+        width: "0%",
+        duration: 0.3,
+        ease: "power2.in",
+      });
+    }
   };
 
   return (
@@ -26,13 +47,14 @@ const CustomLink = ({ href, children }) => {
       href={href}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="relative text-[11px] font-bold uppercase tracking-[0.15em] text-primary hover:text-accent transition-colors duration-300"
+      className={`relative text-[11px] font-bold uppercase tracking-[0.15em] transition-colors duration-300 ${
+        isActive ? "text-accent" : "text-primary hover:text-accent"
+      }`}
     >
       {children}
-      {/* Animated Underline */}
       <span
         ref={lineRef}
-        className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent"
+        className="absolute -bottom-1 left-0 h-[2px] bg-accent"
       />
     </Link>
   );
@@ -56,16 +78,14 @@ const NavBar = () => {
       className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100"
     >
       <div className="max-w-[1440px] mx-auto px-10 h-14">
-        {" "}
-        {/* Reduced height to h-14 */}
         <nav className="flex items-center justify-between h-full">
-          {/* Left Side - Pushed far left */}
+          {/* Left Side */}
           <div className="flex flex-1 justify-start gap-12">
             <CustomLink href="/">Home</CustomLink>
             <CustomLink href="/services">Services</CustomLink>
           </div>
 
-          {/* Center Logo - Minimalist */}
+          {/* Center Logo */}
           <div className="flex shrink-0 items-center justify-center">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-8 h-8 transition-transform duration-500 group-hover:rotate-[360deg]">
@@ -87,7 +107,7 @@ const NavBar = () => {
             </Link>
           </div>
 
-          {/* Right Side - Pushed far right */}
+          {/* Right Side */}
           <div className="flex flex-1 justify-end gap-12">
             <CustomLink href="/about">About</CustomLink>
             <CustomLink href="/contact">Contact</CustomLink>

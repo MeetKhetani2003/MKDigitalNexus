@@ -52,3 +52,7 @@
     @apply text-primary hover:text-accent transition-colors font-bold uppercase tracking-wider text-sm;
   }
 }
+.testimonial-reveal {
+  opacity: 1 !important; /* Force visibility by default */
+  visibility: visible !important;
+}
