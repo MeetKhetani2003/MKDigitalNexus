@@ -36,6 +36,9 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    background-repeat: repeat;
+    background-size: 100px;
     font-family: var(--font-sans);
     @apply antialiased;
   }
@@ -52,7 +55,18 @@
     @apply text-primary hover:text-accent transition-colors font-bold uppercase tracking-wider text-sm;
   }
 }
+@layer utilities {
+  .clip-path-reveal {
+    clip-path: inset(100% 0 0 0);
+  }
+  .group:hover .clip-path-reveal {
+    clip-path: inset(0 0 0 0);
+  }
+}
 .testimonial-reveal {
   opacity: 1 !important; /* Force visibility by default */
   visibility: visible !important;
+}
+.text-mask {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
