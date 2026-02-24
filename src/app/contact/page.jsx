@@ -21,7 +21,36 @@ const ContactPage = () => {
     }, containerRef);
     return () => ctx.revert();
   }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      service: e.target.service.value,
+      message: e.target.message.value,
+    };
+
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Message sent successfully!");
+      e.target.reset();
+    } else {
+      alert("Failed to send message.");
+    }
+  };
   return (
     <main
       ref={containerRef}
@@ -49,10 +78,10 @@ const ContactPage = () => {
                 Official Email
               </p>
               <a
-                href="mailto:team@loginex.ca"
+                href="mailto:mkdigitalnexus@gmail.com"
                 className="text-xl font-light text-primary border-b border-primary/10 pb-1 hover:border-accent transition-all"
               >
-                team@loginex.ca [cite: 3]
+                mkdigitalnexus@gmail.com
               </a>
             </div>
 
@@ -100,10 +129,14 @@ const ContactPage = () => {
 
           {/* --- Section 3: Quotation Form --- */}
           <div className="lg:col-span-8">
-            <form className="contact-reveal bg-white border border-gray-100 p-10 lg:p-14 rounded-xl shadow-sm space-y-10">
+            <form
+              onSubmit={handleSubmit}
+              className="contact-reveal bg-white border border-gray-100 p-10 lg:p-14 rounded-xl shadow-sm space-y-10"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative group">
                   <input
+                    name="name"
                     type="text"
                     placeholder="Your Name"
                     className="w-full bg-transparent border-b border-gray-200 py-4 outline-none focus:border-accent transition-colors font-light text-lg"
@@ -112,6 +145,7 @@ const ContactPage = () => {
                 </div>
                 <div className="relative group">
                   <input
+                    name="email"
                     type="email"
                     placeholder="Email Address"
                     className="w-full bg-transparent border-b border-gray-200 py-4 outline-none focus:border-accent transition-colors font-light text-lg"
@@ -121,19 +155,28 @@ const ContactPage = () => {
               </div>
 
               <div className="relative group">
-                <select className="w-full bg-transparent border-b border-gray-200 py-4 outline-none focus:border-accent transition-colors font-light text-lg appearance-none cursor-pointer">
-                  <option disabled selected>
+                <select
+                  name="service"
+                  defaultValue=""
+                  className="w-full bg-transparent border-b border-gray-200 py-4 outline-none focus:border-accent transition-colors font-light text-lg appearance-none cursor-pointer"
+                >
+                  <option value="" disabled>
                     Select Service Interest
                   </option>
-                  <option>Web Development (Inquiry Focus)</option>
-                  <option>Software Engineering (E-commerce/Admin)</option>
-                  <option>Bespoke Business Dashboard</option>
+                  <option value="Web Development">
+                    Web Development (Inquiry Focus)
+                  </option>
+                  <option value="Software Engineering">
+                    Software Engineering (E-commerce/Admin)
+                  </option>
+                  <option value="Business Dashboard">CRM Dashboard</option>
                 </select>
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-all duration-500 group-focus-within:w-full" />
               </div>
 
               <div className="relative group">
                 <textarea
+                  name="message"
                   rows="1"
                   placeholder="Project Brief"
                   className="w-full bg-transparent border-b border-gray-200 py-4 outline-none focus:border-accent transition-colors font-light text-lg resize-none"
