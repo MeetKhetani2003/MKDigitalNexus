@@ -66,7 +66,7 @@ const ContactPage = () => {
                     IN
                   </span>
                   <p className="text-lg font-light text-primary">
-                    +91 63531 21773 (Meet){" "}
+                    +91 63531 21773 (Meet Khetani)
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -74,7 +74,15 @@ const ContactPage = () => {
                     CA
                   </span>
                   <p className="text-lg font-light text-primary">
-                    +1 778 899 8845 (Ansh) [cite: 3]
+                    +1 778 899 8845 (Ansh Rohit)
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-accent font-mono">
+                    IN
+                  </span>
+                  <p className="text-lg font-light text-primary">
+                    +91 97376 95955 (Vedant Meswania)
                   </p>
                 </div>
               </div>
