@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="https://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/services</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/about</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/contact</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/projects</loc>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.mkdigitalnexus.in/privacy-policy</loc>
+    <priority>0.50</priority>
+  </url>
+</urlset>
