@@ -10,8 +10,8 @@ if (typeof window !== "undefined") {
 
 const services = [
   {
-    title: "Web Development",
-    desc: "High-performance websites built with MERN stack and Next.js, optimized for speed, SEO, and seamless user experiences.",
+    title: "Website Development in Rajkot & Junagadh",
+    desc: "High-performance business website development services for companies across Gujarat, optimized for SEO and lead generation.",
     slug: "web-development",
     icon: (
       <svg
@@ -27,25 +27,8 @@ const services = [
     ),
   },
   {
-    title: "Software Development",
-    desc: "Robust, scalable software solutions tailored to your business needs, focusing on security and long-term reliability.",
-    slug: "software-development",
-    icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-    ),
-  },
-  {
-    title: "Business CRM & Inventory",
-    desc: "Custom dashboard solutions to manage your customers and inventory in real-time, streamlining your operational workflow.",
+    title: "Custom CRM Dashboard Development in Gujarat",
+    desc: "Sales CRM, inventory management, and automation systems designed for factories.",
     slug: "crm-inventory-dashboard",
     icon: (
       <svg
@@ -60,6 +43,23 @@ const services = [
       </svg>
     ),
   },
+  {
+    title: "Manufacturing & Clothing Brand Website Development",
+    desc: "Industrial and ecommerce website solutions tailored for Gujarat businesses.",
+    slug: "software-development",
+    icon: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    ),
+  },
 ];
 
 const Services = () => {
@@ -67,13 +67,9 @@ const Services = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // We use .fromTo to explicitly define the start and end states
       gsap.fromTo(
         ".service-card",
-        {
-          y: 40,
-          opacity: 0,
-        },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
@@ -82,30 +78,46 @@ const Services = () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 95%", // Trigger almost as soon as the section touches the bottom
+            start: "top 95%",
             toggleActions: "play none none none",
-            once: true, // Ensure it only runs once and stays visible
+            once: true,
           },
         },
       );
     }, containerRef);
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-10 bg-[#fefcfb]">
+    <section
+      ref={containerRef}
+      className="py-16 sm:py-20 lg:py-24 px-6 sm:px-8 lg:px-10 bg-[#fefcfb]"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header Area */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-4 block">
-              Our Expertise
+              Our Web Development Expertise
             </span>
-            <h2 className="text-4xl lg:text-5xl font-extralight text-primary leading-tight tracking-tight">
-              Comprehensive{" "}
-              <span className="font-semibold italic">Solutions</span> <br />
-              for the Digital Age.
+
+            {/* SEO Improved Heading */}
+            <h2
+              id="services-heading"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight text-primary leading-tight tracking-tight"
+            >
+              Website & CRM Development{" "}
+              <span className="font-semibold italic">Solutions</span>
+              <br />
+              for Businesses in Gujarat.
             </h2>
+
+            {/* Small SEO Support Text (does not break UI) */}
+            <p className="mt-6 text-gray-500 font-light text-lg">
+              We provide professional website development and custom CRM
+              dashboard solutions in Rajkot, Junagadh, and across Gujarat.
+            </p>
           </div>
 
           <Link
@@ -120,13 +132,12 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
           {services.map((service, index) => (
             <Link
               key={index}
               href={`/services/${service.slug}`}
-              // Removed initial opacity-0 to let GSAP handle the transition from a visible state if needed
-              className="service-card group relative p-10 bg-white rounded-[2.5rem] border border-gray-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:border-accent/30 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(10,17,40,0.1)] block"
+              className="service-card group relative p-6 sm:p-8 md:p-10 bg-white rounded-[2rem] border border-gray-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:border-accent/30 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(10,17,40,0.1)] block"
             >
               <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white mb-8 shadow-lg shadow-primary/20 group-hover:bg-accent group-hover:shadow-accent/40 transition-all duration-500">
                 {service.icon}

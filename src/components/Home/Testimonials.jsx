@@ -12,19 +12,19 @@ const reviews = [
     name: "Aarav Sharma",
     role: "CEO, TechFlow Solutions",
     content:
-      "MK Digital Nexus transformed our legacy systems into a high-performance Next.js platform.",
+      "MK Digital Nexus transformed our business website into a high-performance Next.js platform optimized for SEO and scalability.",
   },
   {
     name: "Sarah Jenkins",
     role: "Product Manager, RetailSync",
     content:
-      "The custom CRM dashboard built for our inventory management has streamlined our entire workflow.",
+      "The custom CRM dashboard developed for our inventory management streamlined our operations and improved productivity.",
   },
   {
     name: "Rohan Mehta",
     role: "Founder, GreenWave",
     content:
-      "Elegant, fast, and scalable. They took our vision and built a digital foundation effortlessly.",
+      "Professional, fast, and scalable web development services. They built a powerful digital foundation for our company.",
   },
 ];
 
@@ -33,10 +33,8 @@ const Testimonials = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Force all cards to be visible immediately on mount to prevent "Lode" error
       gsap.set(".testimonial-reveal", { opacity: 1, visibility: "visible" });
 
-      // 2. Perform the animation
       gsap.from(".testimonial-reveal", {
         y: 40,
         opacity: 0,
@@ -45,7 +43,7 @@ const Testimonials = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 95%", // Fires almost instantly when section enters screen
+          start: "top 95%",
           toggleActions: "play none none none",
           once: true,
         },
@@ -56,24 +54,38 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-10 bg-[#fefcfb]">
+    <section
+      ref={sectionRef}
+      className="py-16 sm:py-20 lg:py-32 px-6 sm:px-8 lg:px-10 bg-[#fefcfb]"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="mb-20 text-center">
           <span className="testimonial-reveal text-[10px] font-black uppercase tracking-[0.5em] text-accent mb-4 block">
-            Success Stories
+            Client Testimonials
           </span>
-          <h2 className="testimonial-reveal text-4xl lg:text-5xl font-extralight text-primary tracking-tight">
-            Trusted by{" "}
-            <span className="font-medium italic">Industry Leaders.</span>
+
+          {/* SEO-Improved Heading */}
+          <h2
+            id="testimonials-heading"
+            className="testimonial-reveal text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight text-primary tracking-tight"
+          >
+            Trusted Web Development Company in{" "}
+            <span className="font-medium italic">Rajkot & Junagadh</span>
           </h2>
+
+          {/* Small SEO paragraph (invisible design impact, big SEO impact) */}
+          <p className="testimonial-reveal mt-6 text-gray-500 max-w-2xl mx-auto text-lg font-light">
+            Businesses across Gujarat trust MK Digital Nexus for professional
+            website development, custom CRM dashboard solutions, and scalable
+            web applications.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {reviews.map((review, index) => (
             <div
               key={index}
-              // Notice: No 'opacity-0' class here. We let GSAP handle it dynamically.
-              className="testimonial-reveal group relative p-10 bg-white border border-gray-100 rounded-[2.5rem] transition-all duration-500 hover:border-accent/30 hover:shadow-2xl"
+              className="testimonial-reveal group relative p-6 sm:p-8 md:p-10 bg-white border border-gray-100 rounded-[2rem] transition-all duration-500 hover:border-accent/30 hover:shadow-2xl"
             >
               <div className="relative z-10">
                 <div className="flex gap-1 mb-6">
@@ -84,9 +96,11 @@ const Testimonials = () => {
                     />
                   ))}
                 </div>
+
                 <p className="text-gray-500 font-light italic leading-relaxed mb-10 text-lg">
                   "{review.content}"
                 </p>
+
                 <div>
                   <p className="text-sm font-bold text-primary tracking-wide">
                     {review.name}
