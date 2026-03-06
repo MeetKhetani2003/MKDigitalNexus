@@ -114,6 +114,14 @@ const ContactPage = () => {
                     +91 97376 95955 (Vedant Meswania)
                   </p>
                 </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-bold text-accent font-mono">
+                    IN
+                  </span>
+                  <p className="text-lg font-light text-primary">
+                    +91 70419 88887 (Prayagraj Pandya)
+                  </p>
+                </div>
               </div>
             </div>
 
