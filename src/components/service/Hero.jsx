@@ -18,8 +18,7 @@ const services = [
       "High-performance business websites built for speed and scalability.",
     description:
       "We engineer SEO-optimized web applications using Next.js and React. Our focus is on clean architecture, lightning-fast load times, and responsive precision for businesses in Rajkot and Junagadh.",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000",
+    image: "/web.jpg",
     id: "01",
     slug: "web-development",
   },
@@ -29,8 +28,7 @@ const services = [
     brief: "Robust backend systems for complex business workflows.",
     description:
       "From API development to secure database management, we build enterprise-grade systems that power factories, clothing brands, and modern businesses across Gujarat.",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
+    image: "/software.jpg",
     id: "02",
     slug: "software-development",
   },
@@ -40,8 +38,7 @@ const services = [
     brief: "Centralized business dashboards for real-time operational control.",
     description:
       "Transform raw business data into clarity with custom CRM dashboards, inventory tracking systems, and automation tools built using scalable MERN stack architecture.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bbda48658a7d?auto=format&fit=crop&q=80&w=1000",
+    image: "/crm.jpg",
     id: "03",
     slug: "crm-inventory-dashboard",
   },

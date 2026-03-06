@@ -1,15 +1,19 @@
-"use client";
-import React, { useEffect, useRef } from "react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
-import gsap from "gsap";
+import ServiceDetailClient from "./service-client.jsx";
 
 const serviceData = {
   "web-development": {
     title: "Web Development",
     subtitle: "High-Performance Inquiry Generation",
+    description:
+      "Professional Web Development services using Next.js. Fast, SEO optimized websites designed for lead generation and business growth.",
+    keywords: [
+      "web development",
+      "next js development",
+      "seo optimized website",
+      "business website development",
+    ],
     overview:
-      "We engineer high-speed, SEO-optimized web platforms specifically designed for business marketing. Our focus is on aesthetic precision and lead generation to convert visitors into inquiries[cite: 16].",
+      "We engineer high-speed, SEO-optimized web platforms specifically designed for business marketing. Our focus is on aesthetic precision and lead generation to convert visitors into inquiries.",
     techFeatures: [
       {
         label: "01",
@@ -28,22 +32,52 @@ const serviceData = {
       },
     ],
     liveLinks: [
-      { name: "Loginex", url: "https://www.loginex.ca/" },
-      { name: "Shynex Detailing", url: "https://www.shynexdetailing.ca/" },
-      { name: "BSR Worldwide", url: "https://www.bsrworldwide.in/" },
+      {
+        name: "Loginex",
+        url: "https://www.loginex.ca/",
+        img: "/websites/loginex.png",
+      },
+      {
+        name: "Shynex Detailing",
+        url: "https://www.shynexdetailing.ca/",
+        img: "/websites/shynex.png",
+      },
+      {
+        name: "BSR Worldwide",
+        url: "https://www.bsrworldwide.in/",
+        img: "/websites/bsr.png",
+      },
       {
         name: "Green Wave Packaging",
         url: "https://www.greenwavepackaging.ca/",
+        img: "/websites/GreenWavePackaging.png",
       },
-      { name: "Groovy Cafe", url: "https://www.groovycafe.in/" },
-      { name: "Green Wave Global", url: "https://gwgc.ca" },
+      {
+        name: "Groovy Cafe",
+        url: "https://www.groovycafe.in/",
+        img: "/websites/GroovyCafe.png",
+      },
+      {
+        name: "Green Wave Global",
+        url: "https://gwgc.ca",
+        img: "/websites/gwgc.png",
+      },
     ],
   },
+
   "software-development": {
     title: "Software Engineering",
     subtitle: "E-commerce & Admin-Driven Platforms",
+    description:
+      "Custom Software Development services using MERN stack. Build scalable ecommerce platforms with powerful admin dashboards.",
+    keywords: [
+      "software development",
+      "mern stack development",
+      "custom software",
+      "ecommerce development",
+    ],
     overview:
-      "We build robust MERN stack applications featuring powerful admin panels to manage products, track inventory, and handle full-scale e-commerce operations[cite: 6, 17].",
+      "We build robust MERN stack applications featuring powerful admin panels to manage products, track inventory, and handle full-scale e-commerce operations.",
     techFeatures: [
       {
         label: "01",
@@ -53,7 +87,7 @@ const serviceData = {
       {
         label: "02",
         title: "MERN Scalability",
-        desc: "Secure backends with Node.js and MongoDB designed to grow with your business traffic[cite: 17].",
+        desc: "Secure backends with Node.js and MongoDB designed to grow with your business traffic.",
       },
       {
         label: "03",
@@ -62,15 +96,32 @@ const serviceData = {
       },
     ],
     liveLinks: [
-      { name: "Groovy Foods", url: "https://www.groovyfoods.in/" },
-      { name: "M & P Fastners", url: "https://www.mandpfasteners.in/" },
+      {
+        name: "Groovy Foods",
+        url: "https://www.groovyfoods.in/",
+        img: "/software/groovyfoods.png",
+      },
+      {
+        name: "M & P Fastners",
+        url: "https://www.mandpfasteners.in/",
+        img: "/software/Rickyexport.png",
+      },
     ],
   },
+
   "crm-inventory-dashboard": {
     title: "Business Dashboards",
     subtitle: "Custom CRM & Intelligence",
+    description:
+      "Custom CRM dashboards and business intelligence systems designed to manage operations and provide real-time insights.",
+    keywords: [
+      "crm dashboard",
+      "business intelligence dashboard",
+      "inventory dashboard",
+      "admin panel development",
+    ],
     overview:
-      "Specialized, highly customizable CRM dashboards built to fit unique business needs. These command centers provide raw data clarity and operational management.",
+      "Specialized, highly customizable CRM dashboards built to fit unique business needs.",
     techFeatures: [
       {
         label: "01",
@@ -85,120 +136,61 @@ const serviceData = {
       {
         label: "03",
         title: "Privacy Focused",
-        desc: "Secure, internal management tools designed for high-concurrency business operations.",
+        desc: "Secure internal management tools designed for high-concurrency business operations.",
       },
     ],
     liveLinks: [
       {
         name: "Bhagvati Admin (Demo)",
         url: "https://bhagvati-admin.vercel.app/",
+        img: "/crm/bhagvati.png",
       },
       {
         name: "Restaurant POS Admin (Demo)",
         url: "https://pos-client-kappa.vercel.app/",
+        img: "/crm/restaurant.png",
       },
     ],
   },
 };
 
-const ServiceDetail = () => {
-  const { slug } = useParams();
+/* ================================
+   Dynamic SEO
+================================ */
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
   const data = serviceData[slug] || serviceData["web-development"];
-  const containerRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".reveal-text",
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out" },
-      );
-    }, containerRef);
-    return () => ctx.revert();
-  }, [slug]);
+  return {
+    title: `${data.title} Services | MK Digital Nexus`,
+    description: data.description,
+    keywords: data.keywords,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url: `https://mkdigitalnexus.in/services/${slug}`,
+      siteName: "MK Digital Nexus",
+      type: "website",
+    },
+    alternates: {
+      canonical: `https://mkdigitalnexus.in/services/${slug}`,
+    },
+  };
+}
+/* ================================
+   Page Component
+================================ */
 
-  return (
-    <main
-      ref={containerRef}
-      className="bg-[#fefcfb] min-h-screen pt-40 pb-24 px-10"
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="mb-24">
-          <Link
-            href="/services"
-            className="reveal-text text-[10px] font-black uppercase tracking-[0.3em] text-accent hover:opacity-70 transition-opacity"
-          >
-            ← Back to Services
-          </Link>
-          <h1 className="reveal-text text-6xl lg:text-8xl font-extralight tracking-tighter text-primary leading-tight mt-8">
-            {data.title.split(" ")[0]} <br />
-            <span className="italic font-medium">
-              {data.title.split(" ").slice(1).join(" ")}
-            </span>
-          </h1>
-          <p className="reveal-text text-xl text-primary/60 font-light mt-8 max-w-2xl">
-            {data.overview}
-          </p>
-        </div>
+export default async function Page({ params }) {
+  const { slug } = await params;
 
-        {/* Technical Deep Dive */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-32">
-          {data.techFeatures.map((feature, i) => (
-            <div
-              key={i}
-              className="reveal-text p-10 bg-white border border-gray-100 rounded-xl hover:border-accent/20 transition-all"
-            >
-              <span className="text-4xl font-bold text-primary/10 block mb-6">
-                {feature.label}
-              </span>
-              <h3 className="text-xl font-bold text-primary mb-4">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-gray-500 font-light leading-relaxed">
-                {feature.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+  const data = serviceData[slug];
 
-        {/* Live Deployments / Portfolio Links */}
-        <div className="border-t border-gray-100 pt-20">
-          <h2 className="reveal-text text-3xl font-extralight text-primary mb-12">
-            Proven <span className="italic font-medium">Deployments</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.liveLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.url}
-                target="_blank"
-                className="reveal-text flex items-center justify-between p-6 border border-gray-100 rounded-xl hover:bg-primary hover:text-white transition-all duration-500"
-              >
-                <span className="text-sm font-bold uppercase tracking-widest">
-                  {link.name}
-                </span>
-                <span>↗</span>
-              </a>
-            ))}
-          </div>
-        </div>
+  if (!data) {
+    return <div>Service not found</div>;
+  }
 
-        {/* Direct CTA */}
-        <div className="reveal-text mt-40 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-accent mb-8">
-            Ready to initiate?
-          </p>
-          <Link
-            href="/contact"
-            className="text-4xl lg:text-6xl font-extralight tracking-tighter text-primary hover:text-accent transition-colors"
-          >
-            Start a <span className="italic font-medium">Quotation</span>
-          </Link>
-        </div>
-      </div>
-    </main>
-  );
-};
-
-export default ServiceDetail;
+  return <ServiceDetailClient data={data} />;
+}
