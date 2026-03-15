@@ -62,6 +62,11 @@ const serviceData = {
         url: "https://gwgc.ca",
         img: "/websites/gwgc.png",
       },
+      {
+        name: "RSDM Institute",
+        url: "https://www.rsdminstitute.com/",
+        img: "/websites/rsdm.png",
+      },
     ],
   },
 
@@ -99,7 +104,7 @@ const serviceData = {
       {
         name: "Groovy Foods",
         url: "https://www.groovyfoods.in/",
-        img: "/software/groovyfoods.png",
+        img: "/software/GroovyFoods.png",
       },
       {
         name: "M & P Fastners",
