@@ -111,7 +111,7 @@ const ContactPage = () => {
                     IN
                   </span>
                   <p className="text-lg font-light text-primary">
-                    +91 97376 95955 (Vedant Meswania)
+                    +91 96248 73035 (Pujal Nandha)
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
