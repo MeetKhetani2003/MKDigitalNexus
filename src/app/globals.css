@@ -1,72 +1,127 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 
-:root {
-  /* Brand Palette */
-  --prussian-blue: #0a1128;
-  --deep-navy: #001f54;
-  --yale-blue: #034078;
-  --cerulean: #1282a2;
-  --white: #fefcfb;
-
-  /* Force Light Mode Background */
-  --background: var(--white);
-  --foreground: var(--prussian-blue);
-
-  --font-geist-sans: "Geist", sans-serif;
-  --font-geist-mono: "Geist Mono", monospace;
+@theme {
+  --color-navy-950: #071A33;
+  --color-navy-900: #0B2447;
+  --color-navy-800: #13325F;
+  --color-navy-700: #1D4278;
+  --color-navy-100: #E8EEF7;
+  --color-navy-50: #F1F4FA;
+  --color-accent: #1B6FD6;
+  --color-accent-hover: #1558AE;
+  --color-offwhite: #F7F9FC;
+  --color-ink: #0A1628;
+  --color-muted: #5A6B82;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
-/* We removed the @media dark background override to keep it always light */
-
-@theme inline {
-  --color-primary: var(--prussian-blue);
-  --color-secondary: var(--deep-navy);
-  --color-accent: var(--cerulean);
-  --color-muted: var(--yale-blue);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-white: var(--white);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@layer base {
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    background-repeat: repeat;
-    background-size: 100px;
-    font-family: var(--font-sans);
-    @apply antialiased;
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: #0A1628;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #1B6FD6;
+  color: #FFFFFF;
+}
+
+/* Circuit background pattern (subtle) */
+.circuit-bg {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(27, 111, 214, 0.08) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(27, 111, 214, 0.06) 0, transparent 40%),
+    linear-gradient(135deg, #0B2447 0%, #071A33 100%);
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(11, 36, 71, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 36, 71, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.grid-pattern-light {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F9FC;
+}
+::-webkit-scrollbar-thumb {
+  background: #13325F;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0B2447;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-@layer components {
-  /* Dark Blue Button with White Text */
-  .btn-primary {
-    @apply bg-primary hover:bg-secondary text-white px-6 py-2 rounded-lg transition-all font-semibold shadow-md active:scale-95 inline-block text-center;
-  }
+/* Glow effects */
+.navy-glow {
+  box-shadow: 0 0 0 1px rgba(27, 111, 214, 0.4), 0 20px 60px -20px rgba(27, 111, 214, 0.35);
+}
 
-  /* Link styling for that "Dark Blue" look */
-  .nav-link {
-    @apply text-primary hover:text-accent transition-colors font-bold uppercase tracking-wider text-sm;
-  }
+.card-shadow {
+  box-shadow: 0 1px 2px rgba(11, 36, 71, 0.04), 0 8px 24px -8px rgba(11, 36, 71, 0.12);
 }
-@layer utilities {
-  .clip-path-reveal {
-    clip-path: inset(100% 0 0 0);
-  }
-  .group:hover .clip-path-reveal {
-    clip-path: inset(0 0 0 0);
-  }
+
+.card-shadow-hover {
+  box-shadow: 0 4px 8px rgba(11, 36, 71, 0.06), 0 24px 48px -12px rgba(11, 36, 71, 0.22);
 }
-.testimonial-reveal {
-  opacity: 1 !important; /* Force visibility by default */
-  visibility: visible !important;
+
+.hero-float {
+  box-shadow: 0 30px 80px -20px rgba(11, 36, 71, 0.35), 0 10px 30px -10px rgba(11, 36, 71, 0.2);
 }
-.text-mask {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Subtle float */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
